@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+}
+
+group = 'lab.pavel'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.mockito:mockito-core:5.12.0'
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        html.required = true
+    }
+}
+
+tasks.register('generateCsvAll', JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'lab.pavel.Main'
+    args 'all', '-6', '6', '0.1', 'build/reports/csv', ';'
+}
+
+tasks.register('generatePlots', Exec) {
+    dependsOn 'generateCsvAll'
+    commandLine 'python', 'scripts/plot_csv.py', 'build/reports/csv', 'build/reports/plots'
+}

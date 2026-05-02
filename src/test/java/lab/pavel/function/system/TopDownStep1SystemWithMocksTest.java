@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class SystemFunctionWithTableStubsTest {
+class TopDownStep1SystemWithMocksTest {
     private static final double EPS = 1e-6;
 
     @ParameterizedTest

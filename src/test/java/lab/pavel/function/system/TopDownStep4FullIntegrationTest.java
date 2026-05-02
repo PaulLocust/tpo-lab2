@@ -11,7 +11,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class SystemFunctionFullIntegrationTest {
+class TopDownStep4FullIntegrationTest {
     private static final double EPS_REF = 1e-4;
     private static final double EPS_CRIT = 1e-4;
     private static final double EPS_MID = 1e-5;

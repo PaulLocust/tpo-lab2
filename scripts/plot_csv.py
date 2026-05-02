@@ -21,7 +21,10 @@ def read_csv(csv_path: Path):
         reader = csv.DictReader(f, delimiter=delimiter)
         for row in reader:
             xs.append(float(row["X"]))
-            ys.append(parse_value(row["Result"]))
+            y = parse_value(row["Result"])
+            if not math.isnan(y):
+                y = min(max(y, -1000000.0), 1000000.0)
+            ys.append(y)
     return xs, ys
 
 
